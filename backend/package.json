@@ -1,0 +1,15 @@
+{
+  "name": "s86_bukka-sri-charan_capstone_habittracker",
+  "version": "1.0.0",
+  "description": "The Habit Tracker is a simple and powerful application that helps users build and maintain positive habits.  \r Users can add new habits, track their daily progress, and maintain streaks. The app also provides real-time graphs to show the user's consistency and growth over time through easy-to-understand analytics.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
