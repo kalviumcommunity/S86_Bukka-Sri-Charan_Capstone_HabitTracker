@@ -6,9 +6,11 @@ const habitSchema = new mongoose.Schema({
     required: true,
   },
   frequency: {
-    type: String, 
-    required: true,
-  },
+  type: String,
+  enum: ['daily', 'weekly', 'monthly'],
+  required: true,
+}
+,
   startDate: {
     type: Date,
     default: Date.now,
