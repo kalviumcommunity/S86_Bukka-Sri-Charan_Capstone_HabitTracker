@@ -1,13 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Habit = require('../models/Habit');
+const Habit = require("../models/Habit");
 
-router.get('/', async (req, res) => {
+// GET all habits
+router.get("/", async (req, res) => {
   try {
     const habits = await Habit.find();
-    res.json(habits);
+    res.status(200).json(habits);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching habits", error });
+    console.error("Error fetching habits:", error);
+
+    res.status(500).json({
+      message: "Server error while fetching habits. Please try again later.",
+    });
   }
 });
 
