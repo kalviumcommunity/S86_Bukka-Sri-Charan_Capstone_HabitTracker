@@ -38,4 +38,47 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const { title, frequency } = req.body;
+
+    if (!title || !frequency) {
+      return res.status(400).json({ message: "Title and frequency are required." });
+    }
+
+    const updatedHabit = await Habit.findByIdAndUpdate(
+      req.params.id,
+      { title, frequency },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedHabit) {
+      return res.status(404).json({ message: "Habit not found." });
+    }
+
+    res.status(200).json(updatedHabit);
+  } catch (error) {
+    console.error("Error updating habit:", error);
+    res.status(500).json({ message: "Server error while updating habit." });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedHabit = await Habit.findByIdAndDelete(id);
+
+    if (!deletedHabit) {
+      return res.status(404).json({ message: "Habit not found." });
+    }
+
+    res.status(200).json({ message: "Habit deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting habit:", error);
+    res.status(500).json({
+      message: "Server error while deleting habit. Please try again later.",
+    });
+  }
+});
+
 module.exports = router;
