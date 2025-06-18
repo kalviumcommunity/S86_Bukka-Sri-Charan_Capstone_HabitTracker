@@ -4,7 +4,7 @@ const Habit = require("../models/Habit");
 
 router.get("/", async (req, res) => {
   try {
-    const habits = await Habit.find();
+    const habits = await Habit.find().populate("userId", "name email");
     res.status(200).json(habits);
   } catch (error) {
     console.error("Error fetching habits:", error);
